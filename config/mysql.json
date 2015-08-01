@@ -1,0 +1,67 @@
+{
+  "develop": {
+    "client": "mysql",
+    "connection": {
+      "host": "rdsejfefbejfefb.mysql.rds.aliyuncs.com",
+      "port": 3306,
+      "user": "scard_pro",
+      "password": "scard_pro",
+      "database": "scard_pro",
+      "charset": "UTF8_GENERAL_CI",
+      "connectTimeout": 15000,
+      "stringifyObjects": false,
+      "multipleStatements": true,
+      "supportBigNumbers": true,
+      "connectionLimit": 2
+    },
+    "debug": true
+  },
+  "test": {
+    "client": "mysql",
+    "connection": {
+      "host": "rdsejfefbejfefb.mysql.rds.aliyuncs.com",
+      "port": 3306,
+      "user": "scard_dev",
+      "password": "scard_dev",
+      "database": "scard",
+      "charset": "UTF8_GENERAL_CI",
+      "connectTimeout": 15000,
+      "stringifyObjects": false,
+      "multipleStatements": true,
+      "supportBigNumbers": true,
+      "connectionLimit": 2
+    }
+  },
+  "production": {
+    "client": "mysql",
+    "connection": {
+      "host": "rdsejfefbejfefb.mysql.rds.aliyuncs.com",
+      "port": 3306,
+      "user": "scard_pro",
+      "password": "scard_pro",
+      "database": "scard_pro",
+      "charset": "UTF8_GENERAL_CI",
+      "connectTimeout": 15000,
+      "stringifyObjects": false,
+      "multipleStatements": true,
+      "supportBigNumbers": true,
+      "connectionLimit": 2
+    }
+  },
+  "docker": {
+    "client": "mysql",
+    "connection": {
+      "host": "218.205.113.98",
+      "port": 3306,
+      "user": "scard_pro",
+      "password": "scard_pro",
+      "database": "scard_pro",
+      "charset": "UTF8_GENERAL_CI",
+      "connectTimeout": 15000,
+      "stringifyObjects": false,
+      "multipleStatements": true,
+      "supportBigNumbers": true,
+      "connectionLimit": 5
+    }
+  }
+}
