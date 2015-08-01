@@ -1,0 +1,18 @@
+{
+  "dbs": [
+    {
+      "uri": "mongodb://iov1.server.163.org/obd_test",
+      "options": {"safe": {"wtimeout": 10000}}
+    }
+  ],
+  "gps": [{
+    "uri": "mongodb://iov1.server.163.org/obd_test",
+    "options": {"safe": {"wtimeout": 10000}}
+  }],
+  "road": [
+    {
+      "uri": "mongodb://iov1.server.163.org/obd_test",
+      "options": {"wtimeoutMS" : 10000}
+    }
+  ]
+}
