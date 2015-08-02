@@ -11,8 +11,8 @@
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0",
     "redis": "^0.12.1",
-    "cheerio": "*",
-    "superagent": "*",
-    "eventproxy": "*"
+    "cheerio": "~0.19.0",
+    "superagent": "1.2.0",
+    "eventproxy": "~0.3.4"
   }
 }
