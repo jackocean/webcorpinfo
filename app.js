@@ -17,7 +17,6 @@ superagent.get(targetUrl)
         	var $element = $(element);
         	var href = url.resolve(targetUrl, $element.attr('href'));
         	console.log(href);
-        	
         });
         
     });
