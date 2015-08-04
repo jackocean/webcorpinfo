@@ -124,11 +124,9 @@ superagent.get(targetUrl).end(function (err, res) {
 	            hostname: 'gsxt.zjaic.gov.cn',
 	            port: 80,
 	            method: 'get',
-	            path: '/common/captcha/doReadKaptcha.do?11',
+	            path: '/common/captcha/doReadKaptcha.do',
 	            headers:headers
 	        };
-        	
-	        options.path = '/images/gs/logo-top.jpg';
         	
 	        console.log(headers.Cookie);
 	        console.log(options.headers);
