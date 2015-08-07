@@ -65,7 +65,7 @@ var getValcode = function(cb) {
 			});
 
 			res.on('end', function() {
-				//cb(imgdata);
+				cb(imgdata);
 				fs.writeFile('cccc.jpg', imgdata, 'binary', function(err){
             		if(err){
             			console.log('fail');
@@ -84,22 +84,30 @@ var getValcode = function(cb) {
 	});
 };
 
-getValcode(function(){});
+//getValcode(function(){});
 
-//var http = require("http");
+http.createServer(function(request, response) {
 
-//http.createServer(function(request, response) {
-//
-//	// response.writeHead(200, {
-//	// "Content-Type" : "text/plain"
-//	// });
-//	response.write("Hello World");
-//	getValcode(function(img) {
-//		
-//	    response.write("Hello World");
-//		//response.write(img)
-//        response.end();
-//	});
-//	
-//}).listen(8888);
+	 response.writeHead(200, {
+	 //"Content-Type" : "image/jpeg"
+	 });
+	 
+	//response.write("Hello World");
+//	getValcode((function(response) {
+//		var res = response;
+//		return function(img){
+//			//res.write("yyyyyy");
+//			res.write(img);
+//			res.end();
+//		};
+//	})(response));
+
+	getValcode(function(img){
+		response.write("yyyyyy");
+		//response.write(img);
+		response.end();
+	});
+	
+	
+}).listen(8888);
 
