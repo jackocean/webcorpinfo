@@ -84,7 +84,6 @@ var getValcode = function(cb) {
 	});
 };
 
-
 getValcode(function(){});
 
 //var http = require("http");
@@ -103,3 +102,4 @@ getValcode(function(){});
 //	});
 //	
 //}).listen(8888);
+
