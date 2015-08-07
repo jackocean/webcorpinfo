@@ -66,12 +66,12 @@ var getValcode = function(cb) {
 
 			res.on('end', function() {
 				cb(imgdata);
-				fs.writeFile('cccc.jpg', imgdata, 'binary', function(err){
-            		if(err){
-            			console.log('fail');
-            		}
-            		
-            	});
+				fs.writeFile('cccc.jpg', imgdata, 'binary', function(err) {
+					if (err) {
+						console.log('fail');
+					}
+
+				});
 			});
 		});
 
@@ -84,30 +84,31 @@ var getValcode = function(cb) {
 	});
 };
 
-//getValcode(function(){});
+// getValcode(function(){});
 
 http.createServer(function(request, response) {
 
-	 response.writeHead(200, {
-	 //"Content-Type" : "image/jpeg"
-	 });
-	 
-	//response.write("Hello World");
-//	getValcode((function(response) {
-//		var res = response;
-//		return function(img){
-//			//res.write("yyyyyy");
-//			res.write(img);
-//			res.end();
-//		};
-//	})(response));
+	// response.write("Hello World");
+	// getValcode((function(response) {
+	// var res = response;
+	// return function(img){
+	// //res.write("yyyyyy");
+	// res.write(img);
+	// res.end();
+	// };
+	// })(response));
 
-	getValcode(function(img){
-		response.write("yyyyyy");
-		//response.write(img);
+	getValcode(function(img) {
+		// response.writeHead(200, {
+		// "Accept-Ranges": "bytes",
+		// "Content-Type" : "image/jpeg",
+		// "Content-Length": img.length
+		// });
+		response.writeHead(200, {
+			"Content-Type" : "image/jpeg"
+		});
+		response.write(img,'binary');
 		response.end();
 	});
-	
-	
-}).listen(8888);
 
+}).listen(8888);
