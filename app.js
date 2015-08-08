@@ -34,6 +34,8 @@ var getValcode = function(cb) {
 
 		var sid = cookie.parse(res.headers['set-cookie'][0])['JSESSIONID'];
 		headers.Cookie = 'JSESSIONID=' + sid;
+		
+		//console.log(headers.Cookie);//每次sessionid都不同
 
 		var options = {
 			host : 'gsxt.zjaic.gov.cn',
@@ -98,6 +100,7 @@ http.createServer(function(request, response) {
 	// };
 	// })(response));
 
+	/*
 	getValcode(function(img) {
 		// response.writeHead(200, {
 		// "Accept-Ranges": "bytes",
@@ -110,5 +113,42 @@ http.createServer(function(request, response) {
 		response.write(img,'binary');
 		response.end();
 	});
+	*/
+	
+	
+	var pathname = url.parse(request.url).pathname;
+    console.log("Request for " + pathname + " received.");
+    
+    var sessionid = '';
+    if(pathname=='/valcode'){
+    	getValcode(function(img) {
+    		// response.writeHead(200, {
+    		// "Accept-Ranges": "bytes",
+    		// "Content-Type" : "image/jpeg",
+    		// "Content-Length": img.length
+    		// });
+    		response.writeHead(200, {
+    			"Content-Type" : "image/jpeg"
+    		});
+    		response.write(img,'binary');
+    		response.end();
+    	});
+        return;
+    }
+    
+    request.setEncoding("utf8");
+    var html = '<html>\
+    	          <head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8" /></head>\
+    	          <body>\
+    	            <img src="/valcode">\
+    	            <input type="text">\
+    	            <input type="button" value="确定">\
+    	          </body>\
+    	        </html>';
+    
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write(html);
+    response.end();
+
 
 }).listen(8888);
