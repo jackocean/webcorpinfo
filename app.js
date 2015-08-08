@@ -9,6 +9,7 @@ var eventproxy = require('eventproxy');
 var iconv = require('iconv-lite');
 var BufferHelper = require('bufferhelper');
 var cookieparser = require('cookie-parser');
+var formidable = require('formidable');
 
 var targetUrl = 'http://gsxt.zjaic.gov.cn/search/doGetAppSearchResultIn.do';
 
@@ -133,6 +134,7 @@ http.createServer(function(request, response) {
 		};
     	
 		var getValcode = function(){
+			console.log(sessionid);//每次sessionid都不同 //需要把这个sessionid保存到本站的浏览器端cookie中
 			http.get(options, function(res) {
 				var imgdata = '';
 				res.setEncoding('binary');
@@ -176,15 +178,66 @@ http.createServer(function(request, response) {
 		}
 		
         return;
+    } else if(pathname=='/vvcode'){
+    	var form = new formidable.IncomingForm();
+    	form.parse(request, function(error, fields) {
+    	    console.log(fields);
+    	    response.writeHead(200, {"Content-Type": "text/html"});
+    	    response.write("test");
+    	    response.end();
+    	});
+    	
+//    	var dovvcode = function(){
+//    		var headers3 = {
+//    	        Accept : 'application/json, text/javascript, */*; q=0.01',
+//    	        'Accept-Language' : 'zh-CN,zh;q=0.8',
+//    	        Cookie : '',
+//    	        Host : 'gsxt.zjaic.gov.cn',
+//    	        'Connection' : 'keep-alive',
+//    	        Referer : 'http://gsxt.zjaic.gov.cn/search/doGetAppSearchResultIn.do',
+//    	        'User-Agent' : 'Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36'
+//            };
+//        	
+//            headers3.Cookie = 'JSESSIONID=' + sessionid;
+//        	
+//        	var options3 = {
+//    			host : 'gsxt.zjaic.gov.cn',
+//    			hostname : 'gsxt.zjaic.gov.cn',
+//    			port : 80,
+//    			method : 'post',
+//    			path : '/search/doValidatorVerifyCode.do',
+//    			headers : headers3
+//    		};
+//        	
+//    		var req =http.request(options3, function(res) {
+//    			console.log(res);
+//    				
+//    		});
+//    		
+//    		req.on('error', function(e) {
+//    			console.log(e.message);
+//    		});
+//
+//    		req.end();
+//    	
+//    	};
+//    	
+		
+    	
+		return;
     }
+    
     
     request.setEncoding("utf8");
     var html = '<html>\
     	          <head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8" /></head>\
     	          <body>\
     	            <img src="/valcode">\
-    	            <input type="text">\
-    	            <input type="button" value="确定">\
+    	            <form method="post" action="/vvcode">\
+    	            <input name="vcode" type="text">\
+    	            <input name="corpname" type="text">\
+    	            <input type="submit" value="确定">\
+    	            </form>\
     	          </body>\
     	        </html>';
     

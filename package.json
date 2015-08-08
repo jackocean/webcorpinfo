@@ -16,6 +16,7 @@
     "eventproxy": "~0.3.4",
     "bufferhelper": "*",
     "iconv-lite": "*",
-    "cookie":"*"
+    "cookie":"*",
+    "formidable":"*"
   }
 }
